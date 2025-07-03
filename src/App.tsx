@@ -154,17 +154,17 @@ function App() {
         </button>
       </div>
 
-      {/* Fixed Cinematic Headline */}
-      <div className="absolute inset-0 z-10 flex items-start justify-center pt-[33vh]">
+      {/* Fixed Cinematic Headline - Matching Screenshot */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div 
           className={`text-center transition-all duration-[1500ms] ease-out ${
             showText 
-              ? 'opacity-80 transform translate-y-0' 
+              ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white font-playfair text-[1.75rem] md:text-[clamp(3rem,5vw,5rem)] tracking-[0.25em] uppercase leading-tight animate-float-text font-normal">
-            BEFORE TIME BROKE<br />
+          <h1 className="text-white/90 font-playfair text-[2.5rem] md:text-[4rem] lg:text-[5.5rem] xl:text-[6.5rem] tracking-[0.25em] uppercase leading-[1.1] animate-float-text font-light">
+            BEFORE TIME BROKE,<br />
             THEY WERE ONE
           </h1>
         </div>
