@@ -155,9 +155,9 @@ function App() {
         </video>
       </div>
 
-      {/* Loading indicator while video loads */}
+      {/* Loading indicator while video loads - Changed to black background */}
       {!videoLoaded && (
-        <div className="absolute inset-0 z-5 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+        <div className="absolute inset-0 z-5 bg-black flex items-center justify-center">
           <div className="text-white/70 font-garamond text-sm tracking-[0.2em] uppercase animate-pulse">
             Loading...
           </div>
