@@ -3,8 +3,17 @@ import React, { useState, useRef, useEffect } from 'react';
 function App() {
   const [showPrologue, setShowPrologue] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [showButtons, setShowButtons] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [showText, setShowText] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const cinematicTexts = [
+    "ONE PROPHECY.",
+    "A FRACTURE IN TIME, REWRITTEN BY WILL.",
+    "SIX ELEMENTS. ONE FATE."
+  ];
 
   useEffect(() => {
     if (videoRef.current) {
@@ -19,6 +28,29 @@ function App() {
       }
     }
   }, [isMuted]);
+
+  useEffect(() => {
+    const textSequence = async () => {
+      for (let i = 0; i < cinematicTexts.length; i++) {
+        setCurrentTextIndex(i);
+        setShowText(true);
+        
+        // Hold for 2 seconds
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Fade out
+        setShowText(false);
+        
+        // Wait for fade out transition
+        await new Promise(resolve => setTimeout(resolve, 1500));
+      }
+      
+      // After all text sequences, show buttons
+      setShowButtons(true);
+    };
+
+    textSequence();
+  }, []);
 
   const handleTeaserClick = () => {
     window.open('https://www.instagram.com/thehexagonbook?igsh=MW5scmU4bmY2cWxtag%3D%3D&utm_source=qr', '_blank');
@@ -111,30 +143,51 @@ function App() {
         </button>
       </div>
 
-      {/* Cinematic Text Buttons */}
-      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
-          <button
-            onClick={handleTeaserClick}
-            className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
+      {/* Cinematic Text Sequence */}
+      {!showButtons && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div 
+            className={`text-center transition-all duration-[1500ms] ease-out ${
+              showText 
+                ? 'opacity-100 transform translate-y-0' 
+                : 'opacity-0 transform translate-y-5'
+            }`}
           >
-            <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
-              TEASER
-            </span>
-            <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
-          </button>
-          
-          <button
-            onClick={handlePrologueClick}
-            className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
-          >
-            <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
-              PROLOGUE
-            </span>
-            <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
-          </button>
+            <h1 className="text-white font-thin text-2xl md:text-4xl lg:text-5xl tracking-[0.3em] uppercase">
+              {cinematicTexts[currentTextIndex]}
+            </h1>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Cinematic Text Buttons */}
+      {showButtons && (
+        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20">
+          <div 
+            className="flex flex-col md:flex-row gap-8 md:gap-16 items-center transition-all duration-[1500ms] ease-out animate-fade-in-slow"
+          >
+            <button
+              onClick={handleTeaserClick}
+              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
+            >
+              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
+                TEASER
+              </span>
+              <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
+            </button>
+            
+            <button
+              onClick={handlePrologueClick}
+              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
+            >
+              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
+                PROLOGUE
+              </span>
+              <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Prologue Overlay */}
       {showPrologue && (
