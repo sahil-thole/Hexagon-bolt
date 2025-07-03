@@ -25,6 +25,79 @@
   50% { transform: translateY(-8px); }
 }
 
+/* Enhanced Parallax Floating Effects */
+@keyframes parallax-float {
+  0% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+  25% { 
+    transform: translateY(-12px) translateX(3px) scale(1.01);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-8px) translateX(-2px) scale(1.02);
+    opacity: 0.8;
+  }
+  75% { 
+    transform: translateY(-15px) translateX(4px) scale(1.01);
+    opacity: 0.7;
+  }
+  100% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes parallax-float-reverse {
+  0% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+  25% { 
+    transform: translateY(8px) translateX(-3px) scale(0.99);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(12px) translateX(2px) scale(0.98);
+    opacity: 0.8;
+  }
+  75% { 
+    transform: translateY(5px) translateX(-4px) scale(0.99);
+    opacity: 0.7;
+  }
+  100% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes ethereal-drift {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotateZ(0deg);
+    filter: blur(0px);
+  }
+  33% { 
+    transform: translateY(-10px) translateX(5px) rotateZ(0.5deg);
+    filter: blur(0.5px);
+  }
+  66% { 
+    transform: translateY(6px) translateX(-3px) rotateZ(-0.3deg);
+    filter: blur(0.3px);
+  }
+}
+
+@keyframes cosmic-breathe {
+  0%, 100% { 
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% { 
+    transform: scale(1.005);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.2); }
@@ -86,6 +159,23 @@
   animation: float-text 12s ease-in-out infinite;
 }
 
+/* Enhanced Parallax Animation Classes */
+.animate-parallax-float {
+  animation: parallax-float 14s ease-in-out infinite;
+}
+
+.animate-parallax-float-reverse {
+  animation: parallax-float-reverse 16s ease-in-out infinite;
+}
+
+.animate-ethereal-drift {
+  animation: ethereal-drift 18s ease-in-out infinite;
+}
+
+.animate-cosmic-breathe {
+  animation: cosmic-breathe 8s ease-in-out infinite;
+}
+
 .animate-twinkle {
   animation: twinkle 3s ease-in-out infinite;
 }
@@ -123,4 +213,19 @@
 
 .animate-bounce-slow {
   animation: bounce-slow 3s ease-in-out infinite;
+}
+
+/* Parallax Text Effects */
+.parallax-text {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.parallax-layer-1 {
+  transform: translateZ(0px);
+}
+
+.parallax-layer-2 {
+  transform: translateZ(-10px) scale(1.1);
 }
