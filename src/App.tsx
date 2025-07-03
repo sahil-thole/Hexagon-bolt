@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ExternalLink, BookOpen } from 'lucide-react';
 
 function App() {
   const [showPrologue, setShowPrologue] = useState(false);
@@ -36,23 +35,27 @@ function App() {
         </video>
       </div>
 
-      {/* Elegant Bottom Buttons */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex flex-col md:flex-row gap-3 items-center">
+      {/* Cinematic Text Buttons */}
+      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
           <button
             onClick={handleTeaserClick}
-            className="group flex items-center gap-2 px-6 py-3 bg-black/20 backdrop-blur-sm border border-white/20 text-white text-sm font-light rounded-full transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:scale-105"
+            className="group relative text-white/75 hover:text-white/95 transition-all duration-300 ease-out"
           >
-            <ExternalLink size={14} className="group-hover:scale-110 transition-transform duration-300" />
-            Teaser
+            <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
+              TEASER
+            </span>
+            <div className="absolute bottom-0 left-0 w-0 h-px bg-white/80 group-hover:w-full transition-all duration-500 ease-out"></div>
           </button>
           
           <button
             onClick={handlePrologueClick}
-            className="group flex items-center gap-2 px-6 py-3 bg-black/20 backdrop-blur-sm border border-white/20 text-white text-sm font-light rounded-full transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:scale-105"
+            className="group relative text-white/75 hover:text-white/95 transition-all duration-300 ease-out"
           >
-            <BookOpen size={14} className="group-hover:scale-110 transition-transform duration-300" />
-            Prologue
+            <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
+              PROLOGUE
+            </span>
+            <div className="absolute bottom-0 left-0 w-0 h-px bg-white/80 group-hover:w-full transition-all duration-500 ease-out"></div>
           </button>
         </div>
       </div>
@@ -68,7 +71,7 @@ function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-start mb-6">
-              <h2 className="text-2xl font-light text-white/90">Prologue</h2>
+              <h2 className="text-2xl font-light text-white/90 tracking-wide">PROLOGUE</h2>
               <button
                 onClick={() => setShowPrologue(false)}
                 className="text-white/60 hover:text-white transition-colors text-2xl leading-none"
