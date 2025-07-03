@@ -38,7 +38,7 @@ function App() {
 
       {/* Elegant Bottom Buttons */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex flex-col sm:flex-row gap-3 items-center">
+        <div className="flex flex-col md:flex-row gap-3 items-center">
           <button
             onClick={handleTeaserClick}
             className="group flex items-center gap-2 px-6 py-3 bg-black/20 backdrop-blur-sm border border-white/20 text-white text-sm font-light rounded-full transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:scale-105"
