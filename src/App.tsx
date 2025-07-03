@@ -161,21 +161,22 @@ function App() {
           }`}
         >
           <h1 className="text-white font-thin uppercase animate-float-text animate-shimmer leading-tight">
-            {/* Desktop version - single line with manual break */}
+            {/* Desktop version - original design */}
             <span className="hidden md:block text-2xl lg:text-4xl xl:text-5xl tracking-[0.3em]" style={{ fontFamily: 'serif' }}>
-              BEFORE TIME BROKE, THEY WERE ONE
+              <span className="block">BEFORE TIME BROKE</span>
+              <span className="block">THEY WERE ONE</span>
             </span>
             
-            {/* Mobile version - forced two lines */}
+            {/* Mobile version - 30% smaller font */}
             <div className="block md:hidden">
               <span 
-                className="block text-xl tracking-[0.4em]"
+                className="block text-lg tracking-[0.4em]"
                 style={{ fontFamily: 'serif' }}
               >
                 BEFORE TIME BROKE
               </span>
               <span 
-                className="block mt-1 text-xl tracking-[0.4em]"
+                className="block mt-1 text-lg tracking-[0.4em]"
                 style={{ fontFamily: 'serif' }}
               >
                 THEY WERE ONE
