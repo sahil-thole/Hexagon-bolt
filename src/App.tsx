@@ -5,24 +5,86 @@ function App() {
   const [isMuted, setIsMuted] = useState(true);
   const [showButtons, setShowButtons] = useState(false);
   const [showText, setShowText] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [audioLoaded, setAudioLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Detect if device is mobile
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+  // Handle video loading and playback
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleVideoLoad = () => {
+      setVideoLoaded(true);
+      video.muted = true; // Ensure muted for autoplay
+      video.play().catch(console.error);
+    };
+
+    const handleVideoError = () => {
+      console.error('Video failed to load');
+    };
+
+    video.addEventListener('loadeddata', handleVideoLoad);
+    video.addEventListener('error', handleVideoError);
+    
+    // Force load
+    video.load();
+
+    return () => {
+      video.removeEventListener('loadeddata', handleVideoLoad);
+      video.removeEventListener('error', handleVideoError);
+    };
+  }, []);
+
+  // Handle audio loading
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleAudioLoad = () => {
+      setAudioLoaded(true);
+      audio.volume = 0.3;
+      audio.muted = isMuted;
+    };
+
+    const handleAudioError = () => {
+      console.error('Audio failed to load');
+    };
+
+    audio.addEventListener('loadeddata', handleAudioLoad);
+    audio.addEventListener('error', handleAudioError);
+    
+    // Force load
+    audio.load();
+
+    return () => {
+      audio.removeEventListener('loadeddata', handleAudioLoad);
+      audio.removeEventListener('error', handleAudioError);
+    };
+  }, [isMuted]);
+
+  // Handle mute state changes
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
     }
-    if (audioRef.current) {
-      audioRef.current.volume = 0.3;
+    if (audioRef.current && audioLoaded) {
       audioRef.current.muted = isMuted;
+      if (!isMuted) {
+        audioRef.current.play().catch(console.error);
+      }
     }
-  }, [isMuted]);
+  }, [isMuted, audioLoaded]);
 
   useEffect(() => {
     const textSequence = async () => {
+      // Wait for video to load before starting sequence
+      if (!videoLoaded) return;
+      
       // Delay initial appearance by 1 second
       await new Promise(resolve => setTimeout(resolve, 1000));
       
@@ -32,20 +94,10 @@ function App() {
       // Wait for text to fully appear, then show buttons
       await new Promise(resolve => setTimeout(resolve, 1500));
       setShowButtons(true);
-      
-      // Handle audio autoplay for desktop after text sequence is complete
-      if (!isMobile && audioRef.current) {
-        setTimeout(() => {
-          setIsMuted(false);
-          audioRef.current.play().catch((error) => {
-            console.log('Autoplay failed:', error);
-          });
-        }, 500);
-      }
     };
 
     textSequence();
-  }, [isMobile]);
+  }, [videoLoaded]);
 
   const handleTeaserClick = () => {
     window.open('https://www.instagram.com/thehexagonbook?igsh=MW5scmU4bmY2cWxtag%3D%3D&utm_source=qr', '_blank');
@@ -57,25 +109,19 @@ function App() {
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
-    
-    // If unmuting, try to play audio
-    if (isMuted && audioRef.current) {
-      audioRef.current.play().catch(console.error);
-    }
   };
 
-  // Handle mobile interaction to unmute
-  const handleMobileInteraction = () => {
-    if (isMobile && isMuted && audioRef.current) {
+  // Handle any user interaction to enable audio
+  const handleUserInteraction = () => {
+    if (isMuted && audioRef.current && audioLoaded) {
       setIsMuted(false);
-      audioRef.current.play().catch(console.error);
     }
   };
 
   return (
     <div 
       className="relative min-h-screen overflow-hidden"
-      onClick={handleMobileInteraction}
+      onClick={handleUserInteraction}
     >
       {/* Background Audio */}
       <audio
@@ -85,6 +131,7 @@ function App() {
         className="hidden"
       >
         <source src="/dark-intro.mp3" type="audio/mpeg" />
+        <source src="/dark-intro.mp3" type="audio/wav" />
       </audio>
 
       {/* Background Video */}
@@ -92,23 +139,30 @@ function App() {
         <video
           ref={videoRef}
           autoPlay
-          muted={isMuted}
+          muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             minWidth: '100%',
             minHeight: '100%',
           }}
         >
-          <source
-            src="/Hexagon-video.mp4"
-            type="video/mp4"
-          />
+          <source src="/Hexagon-video.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support video */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900"></div>
         </video>
       </div>
+
+      {/* Loading indicator while video loads */}
+      {!videoLoaded && (
+        <div className="absolute inset-0 z-5 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+          <div className="text-white/70 font-garamond text-sm tracking-[0.2em] uppercase animate-pulse">
+            Loading...
+          </div>
+        </div>
+      )}
 
       {/* Audio Control Icon - Top Right */}
       <div className="absolute top-6 right-6 z-20">
