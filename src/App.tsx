@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 function App() {
   const [showPrologue, setShowPrologue] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   const handleTeaserClick = () => {
     window.open('https://www.instagram.com/thehexagonbook?igsh=MW5scmU4bmY2cWxtag%3D%3D&utm_source=qr', '_blank');
@@ -11,13 +19,18 @@ function App() {
     setShowPrologue(true);
   };
 
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
+          ref={videoRef}
           autoPlay
-          muted
+          muted={isMuted}
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
@@ -33,6 +46,20 @@ function App() {
           {/* Fallback for browsers that don't support video */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900"></div>
         </video>
+      </div>
+
+      {/* Audio Control Button - Top Right */}
+      <div className="absolute top-8 right-8 z-20">
+        <button
+          onClick={toggleMute}
+          className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
+          aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
+        >
+          <span className="text-xs md:text-sm font-light tracking-[0.2em] uppercase">
+            {isMuted ? 'UNMUTE' : 'MUTE'}
+          </span>
+          <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
+        </button>
       </div>
 
       {/* Cinematic Text Buttons */}
