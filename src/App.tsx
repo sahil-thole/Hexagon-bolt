@@ -4,10 +4,19 @@ function App() {
   const [showPrologue, setShowPrologue] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
+    }
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+      if (!isMuted) {
+        audioRef.current.play().catch(console.error);
+      } else {
+        audioRef.current.pause();
+      }
     }
   }, [isMuted]);
 
@@ -25,6 +34,16 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      {/* Background Audio */}
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+        className="hidden"
+      >
+        <source src="/dark-intro.mp3" type="audio/mpeg" />
+      </audio>
+
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -52,7 +71,7 @@ function App() {
       <div className="absolute top-6 right-6 z-20">
         <button
           onClick={toggleMute}
-          className="group p-2 transition-all duration-300 ease-out"
+          className="group p-3 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 hover:bg-black/30 transition-all duration-300 ease-out"
           aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
         >
           {isMuted ? (
