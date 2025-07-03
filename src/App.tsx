@@ -40,22 +40,22 @@ function App() {
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
           <button
             onClick={handleTeaserClick}
-            className="group relative text-white/75 hover:text-white/95 transition-all duration-300 ease-out"
+            className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
           >
             <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
               TEASER
             </span>
-            <div className="absolute bottom-0 left-0 w-0 h-px bg-white/80 group-hover:w-full transition-all duration-500 ease-out"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
           </button>
           
           <button
             onClick={handlePrologueClick}
-            className="group relative text-white/75 hover:text-white/95 transition-all duration-300 ease-out"
+            className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
           >
             <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
               PROLOGUE
             </span>
-            <div className="absolute bottom-0 left-0 w-0 h-px bg-white/80 group-hover:w-full transition-all duration-500 ease-out"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
           </button>
         </div>
       </div>
