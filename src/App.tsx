@@ -154,41 +154,19 @@ function App() {
         </button>
       </div>
 
-      {/* Parallax Floating Cinematic Headline */}
-      <div className="absolute inset-0 z-10 flex items-start justify-center pt-[20vh]">
+      {/* Main Floating Text */}
+      <div className="absolute inset-0 z-10 flex items-start justify-center pt-[15vh]">
         <div 
-          className={`text-center transition-all duration-[1500ms] ease-out parallax-text ${
+          className={`text-center transition-all duration-[1500ms] ease-out ${
             showText 
               ? 'opacity-100 transform translate-y-0' 
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          {/* Main floating text with multiple animation layers */}
-          <div className="relative">
-            {/* Background ethereal layer */}
-            <h1 className="absolute inset-0 text-white/20 font-garamond text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-ethereal-drift font-normal blur-[1px]">
-              BEFORE TIME BROKE<br />
-              THEY WERE ONE
-            </h1>
-            
-            {/* Mid-layer with parallax float */}
-            <h1 className="absolute inset-0 text-white/40 font-garamond text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-parallax-float font-normal">
-              BEFORE TIME BROKE<br />
-              THEY WERE ONE
-            </h1>
-            
-            {/* Main text layer with cosmic breathe */}
-            <h1 className="relative text-white/60 font-garamond text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-cosmic-breathe font-normal">
-              BEFORE TIME BROKE<br />
-              THEY WERE ONE
-            </h1>
-            
-            {/* Top highlight layer with reverse parallax */}
-            <h1 className="absolute inset-0 text-white/80 font-garamond text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-parallax-float-reverse font-normal opacity-30">
-              BEFORE TIME BROKE<br />
-              THEY WERE ONE
-            </h1>
-          </div>
+          <h1 className="text-white/70 font-garamond text-[0.9rem] sm:text-[1.1rem] md:text-[1.4rem] lg:text-[1.6rem] xl:text-[1.8rem] tracking-[0.35em] uppercase leading-[1.6] font-light animate-soft-float">
+            BEFORE TIME BROKE<br />
+            THEY WERE ONE
+          </h1>
         </div>
       </div>
 
@@ -200,7 +178,7 @@ function App() {
           >
             <button
               onClick={handleTeaserClick}
-              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out animate-parallax-float"
+              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
             >
               <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase font-garamond">
                 TEASER
@@ -210,7 +188,7 @@ function App() {
             
             <button
               onClick={handlePrologueClick}
-              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out animate-parallax-float-reverse"
+              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
             >
               <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase font-garamond">
                 PROLOGUE
