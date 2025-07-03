@@ -27,17 +27,17 @@ function App() {
       setShowFixedText(true);
     }, 1000);
 
-    // Show buttons after text has fully appeared (1s delay + 1.5s fade-in)
+    // Show buttons after text has fully appeared (1s delay + 1.5s fade-in = 2.5s total)
     const buttonTimer = setTimeout(() => {
       setShowButtons(true);
-    }, 3000);
+    }, 2500);
 
-    // Handle audio autoplay for desktop after text is visible
+    // Handle audio autoplay for desktop after text is fully visible (~3 seconds)
     const audioTimer = setTimeout(() => {
-      if (!isMobile && audioRef.current && !isMuted) {
+      if (!isMobile && audioRef.current) {
+        setIsMuted(false);
         audioRef.current.play().catch((error) => {
           console.log('Autoplay failed:', error);
-          // Fallback: audio will be triggered by user interaction
         });
       }
     }, 3000);
@@ -47,7 +47,7 @@ function App() {
       clearTimeout(buttonTimer);
       clearTimeout(audioTimer);
     };
-  }, [isMobile, isMuted]);
+  }, [isMobile]);
 
   const handleTeaserClick = () => {
     window.open('https://www.instagram.com/thehexagonbook?igsh=MW5scmU4bmY2cWxtag%3D%3D&utm_source=qr', '_blank');
@@ -156,8 +156,8 @@ function App() {
         </button>
       </div>
 
-      {/* Fixed Cinematic Text - Golden Third Position */}
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 px-4">
+      {/* Fixed Cinematic Text */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div 
           className={`text-center transition-all duration-[1500ms] ease-out ${
             showFixedText 
@@ -165,28 +165,21 @@ function App() {
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white font-thin uppercase animate-float-text animate-shimmer leading-tight">
-            {/* Desktop version - original styling */}
-            <span className="hidden md:block text-2xl lg:text-4xl xl:text-5xl tracking-[0.25em]" style={{ fontFamily: 'serif' }}>
+          <h1 
+            className="text-white font-thin uppercase tracking-[0.25em] animate-float-text animate-shimmer leading-tight"
+            style={{ fontFamily: 'serif' }}
+          >
+            {/* Desktop version */}
+            <span className="hidden md:block text-2xl lg:text-4xl xl:text-5xl">
               <span className="block">BEFORE TIME BROKE</span>
               <span className="block">THEY WERE ONE</span>
             </span>
             
-            {/* Mobile version - 30% smaller font */}
-            <div className="block md:hidden">
-              <span 
-                className="block text-lg tracking-[0.25em]"
-                style={{ fontFamily: 'serif' }}
-              >
-                BEFORE TIME BROKE
-              </span>
-              <span 
-                className="block mt-1 text-lg tracking-[0.25em]"
-                style={{ fontFamily: 'serif' }}
-              >
-                THEY WERE ONE
-              </span>
-            </div>
+            {/* Mobile version - 30% smaller font, closer button spacing */}
+            <span className="block md:hidden text-lg">
+              <span className="block">BEFORE TIME BROKE</span>
+              <span className="block">THEY WERE ONE</span>
+            </span>
           </h1>
         </div>
       </div>
@@ -195,7 +188,7 @@ function App() {
       {showButtons && (
         <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20">
           <div 
-            className="flex flex-col md:flex-row gap-6 md:gap-16 items-center transition-all duration-[1500ms] ease-out animate-fade-in-slow"
+            className="flex flex-col md:flex-row gap-4 md:gap-16 items-center transition-all duration-[1500ms] ease-out animate-fade-in-slow"
           >
             <button
               onClick={handleTeaserClick}
