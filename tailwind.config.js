@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         'playfair': ['Playfair Display SC', 'serif'],
         'cinzel': ['Cinzel', 'serif'],
+        'garamond': ['EB Garamond', 'serif'],
       },
     },
   },

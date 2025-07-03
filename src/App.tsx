@@ -154,7 +154,7 @@ function App() {
         </button>
       </div>
 
-      {/* Fixed Cinematic Headline - Even Smaller and Higher */}
+      {/* Fixed Cinematic Headline - EB Garamond */}
       <div className="absolute inset-0 z-10 flex items-start justify-center pt-[20vh]">
         <div 
           className={`text-center transition-all duration-[1500ms] ease-out ${
@@ -163,7 +163,7 @@ function App() {
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white/60 text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-float-text font-extralight">
+          <h1 className="text-white/60 font-garamond text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-float-text font-normal">
             BEFORE TIME BROKE<br />
             THEY WERE ONE
           </h1>
@@ -180,7 +180,7 @@ function App() {
               onClick={handleTeaserClick}
               className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
             >
-              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
+              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase font-garamond">
                 TEASER
               </span>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
@@ -190,7 +190,7 @@ function App() {
               onClick={handlePrologueClick}
               className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
             >
-              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase">
+              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase font-garamond">
                 PROLOGUE
               </span>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
@@ -210,7 +210,7 @@ function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-start mb-6">
-              <h2 className="text-2xl font-light text-white/90 tracking-wide">PROLOGUE</h2>
+              <h2 className="text-2xl font-light text-white/90 tracking-wide font-garamond">PROLOGUE</h2>
               <button
                 onClick={() => setShowPrologue(false)}
                 className="text-white/60 hover:text-white transition-colors text-2xl leading-none"
@@ -220,19 +220,19 @@ function App() {
             </div>
             
             <div className="prose prose-invert max-w-none">
-              <p className="text-white/80 leading-relaxed text-base font-light mb-4">
+              <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
                 In a world where the extraordinary lies hidden amidst the ordinary, six powerful individuals, known as the Vertex, are seemingly chosen by fate to wield the essence of six mighty elements: Air, Earth, Water, Fire, Light, and Darkness. These enigmatic bearers, collectively called the Hexagon, are scattered across the globe, each a solitary figure shrouded in mystery. Their identities remain unknown, even to each other, connected only by the ethereal thread of thought that allows them to communicate silently.
               </p>
               
-              <p className="text-white/80 leading-relaxed text-base font-light mb-4">
+              <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
                 Each Vertex leads a life cloaked in the mundane, yet their hearts carry the burden of immense power. When the six form a perfect hexagon, their individual strengths merge, granting them a god-like consciousness. This unity bestows upon them unparalleled powers: immense strength, mastery over minds, and some forbidden arts like soul splitting, time reversal. Their collective presence becomes a force of nature, a hidden shield that has safeguarded the world from countless calamities. Though the ordinary folk remain blissfully unaware of their existence, these six guardians have, through the ages, stood as silent sentinels.
               </p>
               
-              <p className="text-white/80 leading-relaxed text-base font-light mb-4">
+              <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
                 But a dark prophecy looms on the horizon—one that foretells the shattering of the Hexagon and a sacrifice that must be made to maintain the cosmic balance of powers.
               </p>
               
-              <p className="text-white/80 leading-relaxed text-base font-light">
+              <p className="text-white/80 leading-relaxed text-base font-light font-garamond">
                 Against this rising tide of darkness stands Hikaru, the young light vertex, struggling to unite the scattered Vertices. As ancient conspiracies come to light and the origins of both elemental and dark energies are revealed, the Hexagon must confront a terrible truth: what if their very existence feeds the darkness they've sworn to fight?
               </p>
             </div>
