@@ -154,7 +154,7 @@ function App() {
         </button>
       </div>
 
-      {/* Fixed Cinematic Headline - Matching Screenshot */}
+      {/* Fixed Cinematic Headline - Lightweight Font Like Buttons */}
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div 
           className={`text-center transition-all duration-[1500ms] ease-out ${
@@ -163,8 +163,8 @@ function App() {
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white/90 font-playfair text-[2.5rem] md:text-[4rem] lg:text-[5.5rem] xl:text-[6.5rem] tracking-[0.25em] uppercase leading-[1.1] animate-float-text font-light">
-            BEFORE TIME BROKE,<br />
+          <h1 className="text-white/80 text-[1.75rem] sm:text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] xl:text-[5rem] tracking-[0.25em] uppercase leading-[1.2] animate-float-text font-light">
+            BEFORE TIME BROKE<br />
             THEY WERE ONE
           </h1>
         </div>
