@@ -71,7 +71,7 @@ function App() {
       <div className="absolute top-6 right-6 z-20">
         <button
           onClick={toggleMute}
-          className="group p-3 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 hover:bg-black/30 transition-all duration-300 ease-out"
+          className="group p-3 hover:bg-black/20 transition-all duration-300 ease-out"
           aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
         >
           {isMuted ? (
