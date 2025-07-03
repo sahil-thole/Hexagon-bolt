@@ -154,8 +154,8 @@ function App() {
         </button>
       </div>
 
-      {/* Fixed Cinematic Headline - Ultra Light and Smaller */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
+      {/* Fixed Cinematic Headline - Even Smaller and Higher */}
+      <div className="absolute inset-0 z-10 flex items-start justify-center pt-[20vh]">
         <div 
           className={`text-center transition-all duration-[1500ms] ease-out ${
             showText 
@@ -163,7 +163,7 @@ function App() {
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white/70 text-[1.25rem] sm:text-[1.75rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.5rem] tracking-[0.25em] uppercase leading-[1.3] animate-float-text font-extralight">
+          <h1 className="text-white/60 text-[1rem] sm:text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.25rem] tracking-[0.25em] uppercase leading-[1.4] animate-float-text font-extralight">
             BEFORE TIME BROKE<br />
             THEY WERE ONE
           </h1>
