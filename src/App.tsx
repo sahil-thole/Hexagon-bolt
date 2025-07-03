@@ -163,7 +163,7 @@ function App() {
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white font-light text-[1.75rem] md:text-[clamp(3rem,5vw,5rem)] tracking-[0.25em] uppercase leading-tight animate-float-text font-serif">
+          <h1 className="text-white font-playfair text-[1.75rem] md:text-[clamp(3rem,5vw,5rem)] tracking-[0.25em] uppercase leading-tight animate-float-text font-normal">
             BEFORE TIME BROKE<br />
             THEY WERE ONE
           </h1>
