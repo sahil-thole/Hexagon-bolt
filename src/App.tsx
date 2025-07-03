@@ -4,16 +4,9 @@ function App() {
   const [showPrologue, setShowPrologue] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showButtons, setShowButtons] = useState(false);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [showText, setShowText] = useState(true);
+  const [showFixedText, setShowFixedText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const cinematicTexts = [
-    "ONE PROPHECY.",
-    "A FRACTURE IN TIME, REWRITTEN BY WILL.",
-    "SIX ELEMENTS. ONE FATE."
-  ];
 
   useEffect(() => {
     if (videoRef.current) {
@@ -30,26 +23,20 @@ function App() {
   }, [isMuted]);
 
   useEffect(() => {
-    const textSequence = async () => {
-      for (let i = 0; i < cinematicTexts.length; i++) {
-        setCurrentTextIndex(i);
-        setShowText(true);
-        
-        // Hold for 2 seconds
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Fade out
-        setShowText(false);
-        
-        // Wait for fade out transition
-        await new Promise(resolve => setTimeout(resolve, 1500));
-      }
-      
-      // After all text sequences, show buttons
-      setShowButtons(true);
-    };
+    // Show fixed text after 1 second
+    const textTimer = setTimeout(() => {
+      setShowFixedText(true);
+    }, 1000);
 
-    textSequence();
+    // Show buttons after 3 seconds
+    const buttonTimer = setTimeout(() => {
+      setShowButtons(true);
+    }, 3000);
+
+    return () => {
+      clearTimeout(textTimer);
+      clearTimeout(buttonTimer);
+    };
   }, []);
 
   const handleTeaserClick = () => {
@@ -143,22 +130,20 @@ function App() {
         </button>
       </div>
 
-      {/* Cinematic Text Sequence */}
-      {!showButtons && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <div 
-            className={`text-center transition-all duration-[1500ms] ease-out ${
-              showText 
-                ? 'opacity-100 transform translate-y-0' 
-                : 'opacity-0 transform translate-y-5'
-            }`}
-          >
-            <h1 className="text-white font-thin text-2xl md:text-4xl lg:text-5xl tracking-[0.3em] uppercase">
-              {cinematicTexts[currentTextIndex]}
-            </h1>
-          </div>
+      {/* Fixed Cinematic Text - Golden Third Position */}
+      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+        <div 
+          className={`text-center transition-all duration-[1500ms] ease-out ${
+            showFixedText 
+              ? 'opacity-80 transform translate-y-0' 
+              : 'opacity-0 transform translate-y-5'
+          }`}
+        >
+          <h1 className="text-white font-thin text-xl md:text-3xl lg:text-4xl tracking-[0.25em] uppercase serif">
+            Before time broke, they were one.
+          </h1>
         </div>
-      )}
+      </div>
 
       {/* Cinematic Text Buttons */}
       {showButtons && (
