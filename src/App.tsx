@@ -4,15 +4,9 @@ function App() {
   const [showPrologue, setShowPrologue] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showButtons, setShowButtons] = useState(false);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [showText, setShowText] = useState(true);
+  const [showText, setShowText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const cinematicTexts = [
-    "BEFORE TIME BROKE",
-    "THEY WERE ONE"
-  ];
 
   // Detect if device is mobile
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -32,21 +26,11 @@ function App() {
       // Delay initial appearance by 1 second
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      for (let i = 0; i < cinematicTexts.length; i++) {
-        setCurrentTextIndex(i);
-        setShowText(true);
-        
-        // Hold for 2 seconds
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Fade out
-        setShowText(false);
-        
-        // Wait for fade out transition
-        await new Promise(resolve => setTimeout(resolve, 1500));
-      }
+      // Show text with fade-in over 1.5 seconds
+      setShowText(true);
       
-      // After all text sequences, show buttons
+      // Wait for text to fully appear, then show buttons
+      await new Promise(resolve => setTimeout(resolve, 1500));
       setShowButtons(true);
       
       // Handle audio autoplay for desktop after text sequence is complete
@@ -170,22 +154,21 @@ function App() {
         </button>
       </div>
 
-      {/* Cinematic Text Sequence */}
-      {!showButtons && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <div 
-            className={`text-center transition-all duration-[1500ms] ease-out ${
-              showText 
-                ? 'opacity-80 transform translate-y-0' 
-                : 'opacity-0 transform translate-y-5'
-            }`}
-          >
-            <h1 className="text-white font-thin text-2xl md:text-4xl lg:text-5xl tracking-[0.25em] uppercase animate-float-text">
-              {cinematicTexts[currentTextIndex]}
-            </h1>
-          </div>
+      {/* Fixed Cinematic Headline */}
+      <div className="absolute inset-0 z-10 flex items-start justify-center pt-[33vh]">
+        <div 
+          className={`text-center transition-all duration-[1500ms] ease-out ${
+            showText 
+              ? 'opacity-80 transform translate-y-0' 
+              : 'opacity-0 transform translate-y-5'
+          }`}
+        >
+          <h1 className="text-white font-light text-[1.75rem] md:text-[clamp(3rem,5vw,5rem)] tracking-[0.25em] uppercase leading-tight animate-float-text font-serif">
+            BEFORE TIME BROKE<br />
+            THEY WERE ONE
+          </h1>
         </div>
-      )}
+      </div>
 
       {/* Cinematic Text Buttons */}
       {showButtons && (
