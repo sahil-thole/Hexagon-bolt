@@ -8,19 +8,30 @@ function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Detect if device is mobile
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
     }
     if (audioRef.current) {
+      // Set audio volume to 30% for desktop, muted for mobile
+      audioRef.current.volume = isMobile ? 0 : 0.3;
       audioRef.current.muted = isMuted;
-      if (!isMuted) {
+      
+      if (!isMuted && !isMobile) {
+        // Fade in audio after 1 second on desktop
+        setTimeout(() => {
+          audioRef.current?.play().catch(console.error);
+        }, 1000);
+      } else if (!isMuted && isMobile) {
         audioRef.current.play().catch(console.error);
       } else {
         audioRef.current.pause();
       }
     }
-  }, [isMuted]);
+  }, [isMuted, isMobile]);
 
   useEffect(() => {
     // Show fixed text after 1 second
@@ -28,7 +39,7 @@ function App() {
       setShowFixedText(true);
     }, 1000);
 
-    // Show buttons after 3 seconds
+    // Show buttons after text has fully appeared (1s delay + 1.5s fade-in)
     const buttonTimer = setTimeout(() => {
       setShowButtons(true);
     }, 3000);
@@ -51,8 +62,18 @@ function App() {
     setIsMuted(!isMuted);
   };
 
+  // Handle mobile interaction to unmute
+  const handleMobileInteraction = () => {
+    if (isMobile && isMuted) {
+      setIsMuted(false);
+    }
+  };
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div 
+      className="relative min-h-screen overflow-hidden"
+      onClick={handleMobileInteraction}
+    >
       {/* Background Audio */}
       <audio
         ref={audioRef}
@@ -139,8 +160,9 @@ function App() {
               : 'opacity-0 transform translate-y-5'
           }`}
         >
-          <h1 className="text-white font-thin text-xl md:text-3xl lg:text-4xl tracking-[0.25em] uppercase serif">
-            Before time broke, they were one.
+          <h1 className="text-white font-thin uppercase animate-float-text animate-shimmer text-base md:text-2xl lg:text-3xl tracking-[0.3em] md:tracking-[0.25em] leading-relaxed">
+            <span className="block">Before Time Broke</span>
+            <span className="block mt-2">They Were One</span>
           </h1>
         </div>
       </div>
