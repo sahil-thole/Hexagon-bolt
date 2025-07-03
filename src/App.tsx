@@ -221,7 +221,7 @@ function App() {
             
             <div className="prose prose-invert max-w-none">
               <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
-                In a world where the extraordinary lies hidden amidst the ordinary, six powerful individuals, known as the Vertex, are seemingly chosen by fate to wield the essence of six mighty elements: Air, Earth, Water, Fire, Light, and Darkness. These enigmatic bearers, collectively called the Hexagon, are scattered across the globe, each a solitary figure shrouded in mystery. Their identities remain unknown, even to each other, connected only by the ethereal thread of thought that allows them to communicate silently.
+                In a world where the extraordinary lies hidden amidst the ordinary, six powerful individuals, known as the Vertex, are seemingly chosen by fate to wield the essence of six mighty elements: Air, Earth, Water, Fire, Light, and Darkness. These enigmatic bearers, collectively called <strong className="font-bold text-white/90">THE HEXAGON</strong>, are scattered across the globe, each a solitary figure shrouded in mystery. Their identities remain unknown, even to each other, connected only by the ethereal thread of thought that allows them to communicate silently.
               </p>
               
               <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
@@ -229,11 +229,11 @@ function App() {
               </p>
               
               <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
-                But a dark prophecy looms on the horizon—one that foretells the shattering of the Hexagon and a sacrifice that must be made to maintain the cosmic balance of powers.
+                But a dark prophecy looms on the horizon—one that foretells the shattering of <strong className="font-bold text-white/90">THE HEXAGON</strong> and a sacrifice that must be made to maintain the cosmic balance of powers.
               </p>
               
               <p className="text-white/80 leading-relaxed text-base font-light font-garamond">
-                Against this rising tide of darkness stands Hikaru, the young light vertex, struggling to unite the scattered Vertices. As ancient conspiracies come to light and the origins of both elemental and dark energies are revealed, the Hexagon must confront a terrible truth: what if their very existence feeds the darkness they've sworn to fight?
+                Against this rising tide of darkness stands Hikaru, the young light vertex, struggling to unite the scattered Vertices. As ancient conspiracies come to light and the origins of both elemental and dark energies are revealed, <strong className="font-bold text-white/90">THE HEXAGON</strong> must confront a terrible truth: what if their very existence feeds the darkness they've sworn to fight?
               </p>
             </div>
           </div>
