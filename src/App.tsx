@@ -16,22 +16,10 @@ function App() {
       videoRef.current.muted = isMuted;
     }
     if (audioRef.current) {
-      // Set audio volume to 30% for desktop, muted for mobile
-      audioRef.current.volume = isMobile ? 0 : 0.3;
+      audioRef.current.volume = 0.3;
       audioRef.current.muted = isMuted;
-      
-      if (!isMuted && !isMobile) {
-        // Fade in audio after 1 second on desktop
-        setTimeout(() => {
-          audioRef.current?.play().catch(console.error);
-        }, 1000);
-      } else if (!isMuted && isMobile) {
-        audioRef.current.play().catch(console.error);
-      } else {
-        audioRef.current.pause();
-      }
     }
-  }, [isMuted, isMobile]);
+  }, [isMuted]);
 
   useEffect(() => {
     // Show fixed text after 1 second
@@ -44,11 +32,22 @@ function App() {
       setShowButtons(true);
     }, 3000);
 
+    // Handle audio autoplay for desktop after text is visible
+    const audioTimer = setTimeout(() => {
+      if (!isMobile && audioRef.current && !isMuted) {
+        audioRef.current.play().catch((error) => {
+          console.log('Autoplay failed:', error);
+          // Fallback: audio will be triggered by user interaction
+        });
+      }
+    }, 3000);
+
     return () => {
       clearTimeout(textTimer);
       clearTimeout(buttonTimer);
+      clearTimeout(audioTimer);
     };
-  }, []);
+  }, [isMobile, isMuted]);
 
   const handleTeaserClick = () => {
     window.open('https://www.instagram.com/thehexagonbook?igsh=MW5scmU4bmY2cWxtag%3D%3D&utm_source=qr', '_blank');
@@ -60,12 +59,18 @@ function App() {
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
+    
+    // If unmuting, try to play audio
+    if (isMuted && audioRef.current) {
+      audioRef.current.play().catch(console.error);
+    }
   };
 
   // Handle mobile interaction to unmute
   const handleMobileInteraction = () => {
-    if (isMobile && isMuted) {
+    if (isMobile && isMuted && audioRef.current) {
       setIsMuted(false);
+      audioRef.current.play().catch(console.error);
     }
   };
 
@@ -161,8 +166,8 @@ function App() {
           }`}
         >
           <h1 className="text-white font-thin uppercase animate-float-text animate-shimmer leading-tight">
-            {/* Desktop version - original design */}
-            <span className="hidden md:block text-2xl lg:text-4xl xl:text-5xl tracking-[0.3em]" style={{ fontFamily: 'serif' }}>
+            {/* Desktop version - original styling */}
+            <span className="hidden md:block text-2xl lg:text-4xl xl:text-5xl tracking-[0.25em]" style={{ fontFamily: 'serif' }}>
               <span className="block">BEFORE TIME BROKE</span>
               <span className="block">THEY WERE ONE</span>
             </span>
@@ -170,13 +175,13 @@ function App() {
             {/* Mobile version - 30% smaller font */}
             <div className="block md:hidden">
               <span 
-                className="block text-lg tracking-[0.4em]"
+                className="block text-lg tracking-[0.25em]"
                 style={{ fontFamily: 'serif' }}
               >
                 BEFORE TIME BROKE
               </span>
               <span 
-                className="block mt-1 text-lg tracking-[0.4em]"
+                className="block mt-1 text-lg tracking-[0.25em]"
                 style={{ fontFamily: 'serif' }}
               >
                 THEY WERE ONE
