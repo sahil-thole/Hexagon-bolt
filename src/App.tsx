@@ -48,17 +48,47 @@ function App() {
         </video>
       </div>
 
-      {/* Audio Control Button - Top Right */}
-      <div className="absolute top-8 right-8 z-20">
+      {/* Audio Control Icon - Top Right */}
+      <div className="absolute top-6 right-6 z-20">
         <button
           onClick={toggleMute}
-          className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
+          className="group p-2 transition-all duration-300 ease-out"
           aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
         >
-          <span className="text-xs md:text-sm font-light tracking-[0.2em] uppercase">
-            {isMuted ? 'UNMUTE' : 'MUTE'}
-          </span>
-          <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
+          {isMuted ? (
+            // Muted Speaker Icon
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="text-white/70 hover:text-white/90 transition-colors duration-300"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          ) : (
+            // Unmuted Speaker Icon
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="text-white/70 hover:text-white/90 transition-colors duration-300"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          )}
         </button>
       </div>
 
