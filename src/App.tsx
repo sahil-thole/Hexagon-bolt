@@ -100,7 +100,7 @@ function App() {
   }, [videoLoaded]);
 
   const handleTeaserClick = () => {
-    window.open('https://www.instagram.com/thehexagonbook?igsh=MW5scmU4bmY2cWxtag%3D%3D&utm_source=qr', '_blank');
+    window.open('https://www.instagram.com/enterthehexagon?igsh=MWx6bG5xcWFsZW05dQ==', '_blank');
   };
 
   const handlePrologueClick = () => {
