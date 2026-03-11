@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import VerticesPage from './components/VerticesPage';
 
 function App() {
   const [showPrologue, setShowPrologue] = useState(false);
+  const [showVertices, setShowVertices] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showButtons, setShowButtons] = useState(false);
   const [showText, setShowText] = useState(false);
@@ -107,6 +109,10 @@ function App() {
     setShowPrologue(true);
   };
 
+  const handleVerticesClick = () => {
+    setShowVertices(true);
+  };
+
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
@@ -123,6 +129,11 @@ function App() {
       className="relative min-h-screen overflow-hidden"
       onClick={handleUserInteraction}
     >
+      {/* Vertices Page */}
+      {showVertices && (
+        <VerticesPage onClose={() => setShowVertices(false)} />
+      )}
+
       {/* Background Audio */}
       <audio
         ref={audioRef}
@@ -228,7 +239,7 @@ function App() {
       {showButtons && (
         <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20">
           <div 
-            className="flex flex-col md:flex-row gap-4 md:gap-16 items-center transition-all duration-[1500ms] ease-out animate-fade-in-slow"
+            className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-12 items-center transition-all duration-[1500ms] ease-out animate-fade-in-slow"
           >
             <button
               onClick={handleTeaserClick}
@@ -238,6 +249,16 @@ function App() {
                 TEASER
               </span>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
+            </button>
+            
+            <button
+              onClick={handleVerticesClick}
+              className="group relative text-white/90 hover:text-white transition-all duration-300 ease-out"
+            >
+              <span className="text-sm md:text-base font-light tracking-[0.2em] uppercase font-garamond">
+                THE VERTICES
+              </span>
+              <div className="absolute bottom-0 left-0 w-0 h-px bg-blue-400 group-hover:w-full transition-all duration-500 ease-out group-hover:shadow-[0_0_8px_rgba(96,165,250,0.6)]"></div>
             </button>
             
             <button
