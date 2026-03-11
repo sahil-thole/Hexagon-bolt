@@ -275,19 +275,32 @@ function App() {
             
             <div className="prose prose-invert max-w-none">
               <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
-                In a world where the extraordinary lies hidden amidst the ordinary, six powerful individuals, known as the Vertex, are seemingly chosen by fate to wield the essence of six mighty elements: Air, Earth, Water, Fire, Light, and Darkness. These enigmatic bearers, collectively called <strong className="font-bold text-white/90">THE HEXAGON</strong>, are scattered across the globe, each a solitary figure shrouded in mystery. Their identities remain unknown, even to each other, connected only by the ethereal thread of thought that allows them to communicate silently.
+                In a world where the extraordinary dwells unseen among the mundane, six chosen bearers walk unnoticed. They call themselves the Vertex, keepers of Air, Earth, Water, Fire, Light, and Darkness, the six elements that shape creation.
               </p>
               
               <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
-                Each Vertex leads a life cloaked in the mundane, yet their hearts carry the burden of immense power. When the six form a perfect hexagon, their individual strengths merge, granting them a god-like consciousness. This unity bestows upon them unparalleled powers: immense strength, mastery over minds, and some forbidden arts like soul splitting, time reversal. Their collective presence becomes a force of nature, a hidden shield that has safeguarded the world from countless calamities. Though the ordinary folk remain blissfully unaware of their existence, these six guardians have, through the ages, stood as silent sentinels.
+                The Light Vertex, blessed by the sun, stands as the leader of the Hexagon, a beacon of purity and order.<br />
+                The Darkness Vertex, touched by the moon, commands from behind the shadows.<br />
+                The Fire Vertex carries the flame of destruction and rebirth.<br />
+                The Water Vertex channels the pulse of oceans and tides.<br />
+                The Air Vertex, born of the winds and endless skies, commands the breath of life and freedom.<br />
+                The Earth Vertex draws strength from mountain and stone, embodying endurance and balance.
               </p>
               
               <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
-                But a dark prophecy looms on the horizon—one that foretells the shattering of <strong className="font-bold text-white/90">THE HEXAGON</strong> and a sacrifice that must be made to maintain the cosmic balance of powers.
+                These enigmatic bearers, collectively called the Hexagon, are scattered across the globe, each a solitary figure shrouded in mystery. Their identities remain unknown, even to each other, connected only by the ethereal thread of thought that allows them to communicate silently.
+              </p>
+              
+              <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
+                Each Vertex dwells in obscurity, their days indistinguishable from any other soul's, save for the weight that settles upon their shoulders when dusk falls. In solitude, they bear what mortals were never meant to carry. Yet there exists a moment, rare as eclipses, when all six align. In that convergence, something transcendent awakens—a consciousness vast and terrible, wielding powers that reshape the very fabric of existence. Time bends. Minds lay bare. The boundary between life and death dissolves entirely. In those fleeting instances, they are not merely guardians but architects of fate itself, the hidden hand that has turned aside cataclysms the world will never know to fear.
+              </p>
+              
+              <p className="text-white/80 leading-relaxed text-base font-light mb-4 font-garamond">
+                Billions walk the earth, unaware of the six who guard them.
               </p>
               
               <p className="text-white/80 leading-relaxed text-base font-light font-garamond">
-                Against this rising tide of darkness stands Hikaru, the young light vertex, struggling to unite the scattered Vertices. As ancient conspiracies come to light and the origins of both elemental and dark energies are revealed, <strong className="font-bold text-white/90">THE HEXAGON</strong> must confront a terrible truth: what if their very existence feeds the darkness they've sworn to fight?
+                But power, even divine, demands a price. And Hikaru, the Light Vertex, had begun to suspect they had not yet paid it. The old prophecies spoke of shattering. They spoke of sacrifice. Yet the question that tormented Hikaru most was this: What if their very existence feeds the darkness they've sworn to fight?
               </p>
             </div>
           </div>
