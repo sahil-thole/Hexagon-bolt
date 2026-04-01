@@ -77,7 +77,8 @@ const characters: Character[] = [
     techniques: ['Tidal Wave', 'Ice Crystallization', 'Mist Veil', 'Hydro Cannon'],
     signatureMove: 'Tsunami Genesis',
     glowColor: 'shadow-[0_0_30px_rgba(6,182,212,0.6)]',
-    particleColor: 'bg-cyan-400'
+    particleColor: 'bg-cyan-400',
+    image: '/Aquara_char_pro.jpeg'
   },
   {
     id: 'terraga',
