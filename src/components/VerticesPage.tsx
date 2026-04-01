@@ -11,20 +11,22 @@ interface Character {
   signatureMove: string;
   glowColor: string;
   particleColor: string;
+  image?: string;
 }
 
 const characters: Character[] = [
   {
     id: 'hikaru',
-    name: 'Hikaru',
-    title: 'LUMINEX - Light Vertex',
+    name: 'Luminex',
+    title: 'LIGHT VERTEX',
     element: 'Light',
-    age: 28,
-    powerSource: 'Solar Convergence',
-    techniques: ['Radiant Burst', 'Photon Shield', 'Luminous Healing', 'Prism Strike'],
-    signatureMove: 'Divine Illumination',
+    age: 22,
+    powerSource: 'Sun',
+    techniques: ['Seiko (Radiant orb)', 'Hakai (Destructive Light)', 'Komyo Saisei (Radiant Restoration)', 'Hikari no Kusari (Heavenly chains of Light)'],
+    signatureMove: 'Hikari no Fūin: Eien no Tobira (Light sealing - Gate of eternal light)',
     glowColor: 'shadow-[0_0_30px_rgba(255,215,0,0.6)]',
-    particleColor: 'bg-yellow-400'
+    particleColor: 'bg-yellow-400',
+    image: '/Hikaru_chr_profile.jpg'
   },
   {
     id: 'kosei',
@@ -146,12 +148,20 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             <div
               key={character.id}
               onClick={() => handleCardClick(character)}
-              className={`group relative bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-6 cursor-pointer transition-all duration-500 ease-out hover:${character.glowColor} hover:scale-105 hover:border-white/40`}
+              className={`group relative bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-6 cursor-pointer transition-all duration-500 ease-out hover:${character.glowColor} hover:scale-110 hover:border-white/40 transform`}
             >
-              {/* Character Image Placeholder */}
+              {/* Character Image */}
               <div className="relative mb-6 overflow-hidden rounded-xl">
                 <div className="aspect-[3/4] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center">
-                  <div className={`w-16 h-16 ${character.particleColor} rounded-full opacity-60 animate-pulse`} />
+                  {character.image ? (
+                    <img
+                      src={character.image}
+                      alt={character.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className={`w-16 h-16 ${character.particleColor} rounded-full opacity-60 animate-pulse`} />
+                  )}
                 </div>
                 {/* Hover particles */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -214,7 +224,15 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             {/* Character Image - Larger */}
             <div className="relative mb-8 overflow-hidden rounded-xl">
               <div className="aspect-[4/5] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center">
-                <div className={`w-24 h-24 ${selectedCharacter.particleColor} rounded-full opacity-60 animate-pulse`} />
+                {selectedCharacter.image ? (
+                  <img
+                    src={selectedCharacter.image}
+                    alt={selectedCharacter.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className={`w-24 h-24 ${selectedCharacter.particleColor} rounded-full opacity-60 animate-pulse`} />
+                )}
               </div>
               {/* Animated particles */}
               <div className="absolute inset-0">
