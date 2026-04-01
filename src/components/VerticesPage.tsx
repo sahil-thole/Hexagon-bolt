@@ -148,33 +148,36 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             <div
               key={character.id}
               onClick={() => handleCardClick(character)}
-              className="group relative cursor-pointer transition-all duration-500 ease-out hover:scale-110 transform rounded-2xl overflow-hidden"
+              className="group relative cursor-pointer transition-all duration-500 ease-out hover:scale-105 transform"
             >
-              {/* Character Image */}
-              <div className="relative aspect-[3/4] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center overflow-hidden">
-                {character.image ? (
-                  <img
-                    src={character.image}
-                    alt={character.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                ) : (
-                  <div className={`w-16 h-16 ${character.particleColor} rounded-full opacity-60 animate-pulse`} />
-                )}
-              </div>
-              {/* Hover particles */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                {[...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`absolute w-2 h-2 ${character.particleColor} rounded-full animate-float opacity-60`}
-                    style={{
-                      left: `${20 + Math.random() * 60}%`,
-                      top: `${20 + Math.random() * 60}%`,
-                      animationDelay: `${Math.random() * 2}s`
-                    }}
-                  />
-                ))}
+              {/* Card wrapper with border */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-white/20 hover:border-white/40 transition-all duration-500">
+                {/* Character Image */}
+                <div className="relative aspect-[3/4] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center overflow-hidden">
+                  {character.image ? (
+                    <img
+                      src={character.image}
+                      alt={character.name}
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className={`w-16 h-16 ${character.particleColor} rounded-full opacity-60 animate-pulse`} />
+                  )}
+                </div>
+                {/* Hover particles */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className={`absolute w-2 h-2 ${character.particleColor} rounded-full animate-float opacity-60`}
+                      style={{
+                        left: `${20 + Math.random() * 60}%`,
+                        top: `${20 + Math.random() * 60}%`,
+                        animationDelay: `${Math.random() * 2}s`
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -183,12 +186,12 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
 
       {/* Expanded Character Modal */}
       {selectedCharacter && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
+        <div
+          className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in overflow-y-auto"
           onClick={handleCloseExpanded}
         >
-          <div 
-            className={`max-w-2xl max-h-[90vh] overflow-y-auto bg-black/70 backdrop-blur-md border border-white/30 rounded-2xl p-8 text-white animate-fade-in-slow ${selectedCharacter.glowColor}`}
+          <div
+            className={`relative max-w-2xl w-full my-8 bg-black/70 backdrop-blur-md border-2 border-white/30 rounded-2xl p-8 text-white animate-fade-in-slow ${selectedCharacter.glowColor}`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -205,13 +208,13 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             </div>
 
             {/* Character Image - Larger */}
-            <div className="relative mb-8 overflow-hidden rounded-xl">
+            <div className="relative mb-8 overflow-hidden rounded-xl border-2 border-white/20">
               <div className="aspect-[4/5] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center">
                 {selectedCharacter.image ? (
                   <img
                     src={selectedCharacter.image}
                     alt={selectedCharacter.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 ) : (
                   <div className={`w-24 h-24 ${selectedCharacter.particleColor} rounded-full opacity-60 animate-pulse`} />
