@@ -90,7 +90,8 @@ const characters: Character[] = [
     techniques: ['Stone Barrier', 'Earthquake Pulse', 'Crystal Spear', 'Mountain Rise'],
     signatureMove: 'Continental Shift',
     glowColor: 'shadow-[0_0_30px_rgba(34,197,94,0.6)]',
-    particleColor: 'bg-green-500'
+    particleColor: 'bg-green-500',
+    image: '/Terraga_char_rpo.jpeg'
   }
 ];
 
