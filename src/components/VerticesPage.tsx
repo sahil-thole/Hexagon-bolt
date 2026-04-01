@@ -31,7 +31,7 @@ const characters: Character[] = [
   {
     id: 'kosei',
     name: 'Kosei',
-    title: 'UMBRIX - Darkness Vertex',
+    title: 'DARKNESS VERTEX',
     element: 'Darkness',
     age: 32,
     powerSource: 'Lunar Eclipse',
@@ -44,7 +44,7 @@ const characters: Character[] = [
   {
     id: 'pyraxis',
     name: 'Pyraxis',
-    title: 'IGNITUS - Fire Vertex',
+    title: 'FIRE VERTEX',
     element: 'Fire',
     age: 26,
     powerSource: 'Volcanic Core',
@@ -57,7 +57,7 @@ const characters: Character[] = [
   {
     id: 'zephyra',
     name: 'Zephyra',
-    title: 'AERIUS - Air Vertex',
+    title: 'AIR VERTEX',
     element: 'Air',
     age: 24,
     powerSource: 'Stratospheric Winds',
@@ -70,7 +70,7 @@ const characters: Character[] = [
   {
     id: 'aquara',
     name: 'Aquara',
-    title: 'HYDRIX - Water Vertex',
+    title: 'WATER VERTEX',
     element: 'Water',
     age: 27,
     powerSource: 'Oceanic Depths',
@@ -83,7 +83,7 @@ const characters: Character[] = [
   {
     id: 'terraga',
     name: 'Terraga',
-    title: 'GEODEX - Earth Vertex',
+    title: 'EARTH VERTEX',
     element: 'Earth',
     age: 35,
     powerSource: 'Tectonic Core',
@@ -203,37 +203,16 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 text-center">
-                  {/* Vertex Title */}
-                  <h3 className="font-garamond text-white/90 text-sm tracking-[0.3em] uppercase mb-3 font-light">
-                    {character.title}
-                  </h3>
-
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center bg-gradient-to-t from-black/80 via-black/50 to-transparent">
                   {/* Character Name */}
-                  <h2 className="font-garamond text-white text-2xl mb-4 font-normal">
+                  <h2 className="font-garamond text-white text-3xl mb-1 font-normal">
                     {character.name}
                   </h2>
 
-                  {/* Divider */}
-                  <div className="w-16 h-px bg-white/20 mx-auto mb-4" />
-
-                  {/* Meta Info */}
-                  <div className="space-y-1 mb-5">
-                    <p className="font-garamond text-white/60 text-xs uppercase tracking-widest font-light">
-                      Name: <span className="text-white/80">{character.name}</span>
-                    </p>
-                    <p className="font-garamond text-white/60 text-xs uppercase tracking-widest font-light">
-                      Age: <span className="text-white/80">{character.age}</span>
-                    </p>
-                    <p className="font-garamond text-white/60 text-xs uppercase tracking-widest font-light">
-                      Power Source: <span className="text-white/80">{character.powerSource}</span>
-                    </p>
-                  </div>
-
-                  {/* View Details Indicator */}
-                  <div className="text-white/40 text-xs font-garamond uppercase tracking-widest mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    View Details
-                  </div>
+                  {/* Vertex Title */}
+                  <h3 className="font-garamond text-white/70 text-xs tracking-[0.3em] uppercase font-light">
+                    {character.title}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -266,8 +245,8 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             </button>
 
             {/* Character Image */}
-            <div className="relative overflow-hidden" style={{ borderRadius: '16px 16px 0 0' }}>
-              <div className="aspect-[16/10]">
+            <div className="relative overflow-hidden" style={{ borderRadius: '16px' }}>
+              <div className="aspect-[3/4]">
                 {/* Gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
                 <div className="absolute inset-0 z-10 pointer-events-none" style={{
@@ -289,59 +268,6 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
               </div>
             </div>
 
-            {/* Character Details */}
-            <div className="p-10">
-              {/* Header */}
-              <div className="text-center mb-8">
-                <h3 className="font-garamond text-white/90 text-sm tracking-[0.3em] uppercase mb-3 font-light">
-                  {selectedCharacter.title}
-                </h3>
-                <h2 className="font-garamond text-white text-4xl mb-2 font-normal">
-                  {selectedCharacter.name}
-                </h2>
-                <div className="w-24 h-px bg-white/20 mx-auto my-6" />
-              </div>
-
-              {/* Meta Information */}
-              <div className="grid grid-cols-3 gap-6 mb-8 text-center">
-                <div>
-                  <p className="font-garamond text-white/50 text-xs uppercase tracking-widest mb-1 font-light">Element</p>
-                  <p className="font-garamond text-white/90 text-base font-light">{selectedCharacter.element}</p>
-                </div>
-                <div>
-                  <p className="font-garamond text-white/50 text-xs uppercase tracking-widest mb-1 font-light">Age</p>
-                  <p className="font-garamond text-white/90 text-base font-light">{selectedCharacter.age}</p>
-                </div>
-                <div>
-                  <p className="font-garamond text-white/50 text-xs uppercase tracking-widest mb-1 font-light">Power Source</p>
-                  <p className="font-garamond text-white/90 text-base font-light">{selectedCharacter.powerSource}</p>
-                </div>
-              </div>
-
-              {/* Techniques */}
-              <div className="mb-8">
-                <h4 className="font-garamond text-white/90 text-sm uppercase tracking-[0.2em] mb-4 font-light text-center">
-                  Techniques
-                </h4>
-                <div className="space-y-3">
-                  {selectedCharacter.techniques.map((technique, index) => (
-                    <div key={index} className="font-garamond text-white/80 text-base leading-relaxed font-light text-center">
-                      {technique}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Signature Move */}
-              <div className="text-center pt-6 border-t border-white/10">
-                <h4 className="font-garamond text-white/90 text-sm uppercase tracking-[0.2em] mb-3 font-light">
-                  Signature Move
-                </h4>
-                <p className="font-garamond text-white text-xl font-light leading-relaxed">
-                  {selectedCharacter.signatureMove}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       )}
