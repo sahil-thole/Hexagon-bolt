@@ -148,50 +148,33 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             <div
               key={character.id}
               onClick={() => handleCardClick(character)}
-              className={`group relative bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-6 cursor-pointer transition-all duration-500 ease-out hover:${character.glowColor} hover:scale-110 hover:border-white/40 transform`}
+              className="group relative cursor-pointer transition-all duration-500 ease-out hover:scale-110 transform rounded-2xl overflow-hidden"
             >
               {/* Character Image */}
-              <div className="relative mb-6 overflow-hidden rounded-xl">
-                <div className="aspect-[3/4] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center">
-                  {character.image ? (
-                    <img
-                      src={character.image}
-                      alt={character.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className={`w-16 h-16 ${character.particleColor} rounded-full opacity-60 animate-pulse`} />
-                  )}
-                </div>
-                {/* Hover particles */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={`absolute w-2 h-2 ${character.particleColor} rounded-full animate-float opacity-60`}
-                      style={{
-                        left: `${20 + Math.random() * 60}%`,
-                        top: `${20 + Math.random() * 60}%`,
-                        animationDelay: `${Math.random() * 2}s`
-                      }}
-                    />
-                  ))}
-                </div>
+              <div className="relative aspect-[3/4] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center overflow-hidden">
+                {character.image ? (
+                  <img
+                    src={character.image}
+                    alt={character.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className={`w-16 h-16 ${character.particleColor} rounded-full opacity-60 animate-pulse`} />
+                )}
               </div>
-
-              {/* Character Info */}
-              <div className="text-center">
-                <h3 className="text-white/90 font-garamond text-lg tracking-[0.15em] uppercase font-medium mb-2">
-                  {character.title}
-                </h3>
-                <p className="text-white/70 font-garamond text-2xl font-light tracking-wide">
-                  {character.name}
-                </p>
-              </div>
-
-              {/* Hover glow effect */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className={`absolute inset-0 rounded-2xl ${character.glowColor}`} />
+              {/* Hover particles */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`absolute w-2 h-2 ${character.particleColor} rounded-full animate-float opacity-60`}
+                    style={{
+                      left: `${20 + Math.random() * 60}%`,
+                      top: `${20 + Math.random() * 60}%`,
+                      animationDelay: `${Math.random() * 2}s`
+                    }}
+                  />
+                ))}
               </div>
             </div>
           ))}
