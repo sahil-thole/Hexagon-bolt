@@ -51,7 +51,8 @@ const characters: Character[] = [
     techniques: ['Flame Tornado', 'Molten Armor', 'Phoenix Rise', 'Inferno Blast'],
     signatureMove: 'Solar Flare Devastation',
     glowColor: 'shadow-[0_0_30px_rgba(255,69,0,0.6)]',
-    particleColor: 'bg-red-500'
+    particleColor: 'bg-red-500',
+    image: '/Pyraxis_char_pro.jpeg'
   },
   {
     id: 'zephyra',
