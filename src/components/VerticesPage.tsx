@@ -38,7 +38,8 @@ const characters: Character[] = [
     techniques: ['Shadow Bind', 'Void Step', 'Dark Matter', 'Eclipse Strike'],
     signatureMove: 'Eternal Darkness',
     glowColor: 'shadow-[0_0_30px_rgba(139,69,255,0.6)]',
-    particleColor: 'bg-purple-500'
+    particleColor: 'bg-purple-500',
+    image: '/23.png'
   },
   {
     id: 'pyraxis',
@@ -62,7 +63,8 @@ const characters: Character[] = [
     techniques: ['Wind Blade', 'Cyclone Shield', 'Atmospheric Pressure', 'Gale Force'],
     signatureMove: 'Tempest Dominion',
     glowColor: 'shadow-[0_0_30px_rgba(226,232,240,0.6)]',
-    particleColor: 'bg-slate-300'
+    particleColor: 'bg-slate-300',
+    image: '/Zephyra_char_pro.jpeg'
   },
   {
     id: 'aquara',
