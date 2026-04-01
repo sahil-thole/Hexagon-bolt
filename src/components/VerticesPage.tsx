@@ -111,13 +111,13 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-40 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-y-auto">
+    <div className="fixed inset-0 z-40 bg-black overflow-y-auto">
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-1 h-1 bg-blue-400 rounded-full animate-twinkle opacity-30`}
+            className={`absolute w-1 h-1 bg-white rounded-full animate-twinkle opacity-20`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -138,10 +138,10 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
 
       {/* Header Section */}
       <div className="relative z-10 text-center pt-16 pb-12">
-        <h1 className="text-white/70 font-garamond text-3xl md:text-5xl lg:text-6xl tracking-[0.35em] uppercase leading-[1.6] font-light animate-soft-float mb-4">
+        <h1 className="text-white/70 font-garamond text-[0.9rem] sm:text-[1.1rem] md:text-[1.4rem] lg:text-[1.6rem] xl:text-[1.8rem] tracking-[0.35em] uppercase leading-[1.6] font-light animate-soft-float mb-4">
           THE HEXAGON
         </h1>
-        <p className="text-white/60 font-garamond text-lg md:text-xl tracking-[0.2em] uppercase font-light">
+        <p className="text-white/60 font-garamond text-sm md:text-base tracking-[0.2em] uppercase font-light">
           Six Guardians. Six Elements. One Destiny.
         </p>
       </div>
@@ -156,9 +156,9 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
               className="group relative cursor-pointer transition-all duration-500 ease-out hover:scale-105 transform"
             >
               {/* Card wrapper with border */}
-              <div className="relative rounded-2xl overflow-hidden border-2 border-white/20 hover:border-white/40 transition-all duration-500">
+              <div className="relative rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500">
                 {/* Character Image */}
-                <div className="relative aspect-[3/4] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center overflow-hidden">
+                <div className="relative aspect-[3/4] bg-black/60 backdrop-blur-md flex items-center justify-center overflow-hidden">
                   {character.image ? (
                     <img
                       src={character.image}
@@ -196,7 +196,7 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
           onClick={handleCloseExpanded}
         >
           <div
-            className={`relative max-w-2xl w-full my-8 bg-black/70 backdrop-blur-md border-2 border-white/30 rounded-2xl p-8 text-white animate-fade-in-slow ${selectedCharacter.glowColor}`}
+            className={`relative max-w-2xl w-full my-8 bg-black/60 backdrop-blur-md border border-white/20 rounded-2xl p-8 text-white animate-fade-in-slow ${selectedCharacter.glowColor}`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -213,8 +213,8 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             </div>
 
             {/* Character Image - Larger */}
-            <div className="relative mb-8 overflow-hidden rounded-xl border-2 border-white/20">
-              <div className="aspect-[4/5] bg-gradient-to-b from-slate-700 to-slate-800 flex items-center justify-center">
+            <div className="relative mb-8 overflow-hidden rounded-xl border border-white/20">
+              <div className="aspect-[4/5] bg-black/60 backdrop-blur-md flex items-center justify-center">
                 {selectedCharacter.image ? (
                   <img
                     src={selectedCharacter.image}
@@ -245,25 +245,25 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
             {/* Character Details */}
             <div className="space-y-6">
               <div className="text-center">
-                <h3 className="text-3xl font-garamond font-light text-white mb-2">
+                <h3 className="text-3xl font-garamond font-light text-white/90 mb-2">
                   {selectedCharacter.name}
                 </h3>
-                <p className="text-white/70 font-garamond text-lg tracking-wide">
+                <p className="text-white/80 font-garamond text-base leading-relaxed font-light">
                   Age: {selectedCharacter.age} | Element: {selectedCharacter.element}
                 </p>
-                <p className="text-white/60 font-garamond text-base tracking-wide mt-2">
+                <p className="text-white/80 font-garamond text-base leading-relaxed font-light mt-2">
                   Power Source: {selectedCharacter.powerSource}
                 </p>
               </div>
 
               {/* Techniques */}
               <div>
-                <h4 className="text-white/90 font-garamond text-xl font-medium mb-3 tracking-wide">
+                <h4 className="text-white/90 font-garamond text-xl font-light mb-3 tracking-wide">
                   Techniques
                 </h4>
                 <ul className="space-y-2">
                   {selectedCharacter.techniques.map((technique, index) => (
-                    <li key={index} className="text-white/70 font-garamond flex items-center">
+                    <li key={index} className="text-white/80 font-garamond text-base leading-relaxed font-light flex items-center">
                       <span className={`w-2 h-2 ${selectedCharacter.particleColor} rounded-full mr-3 animate-pulse`} />
                       {technique}
                     </li>
@@ -273,10 +273,10 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
 
               {/* Signature Move */}
               <div className="text-center pt-4 border-t border-white/20">
-                <h4 className="text-white/90 font-garamond text-lg font-medium mb-2 tracking-wide">
+                <h4 className="text-white/90 font-garamond text-lg font-light mb-2 tracking-wide">
                   Signature Move
                 </h4>
-                <p className={`text-xl font-garamond font-light tracking-wide animate-pulse ${selectedCharacter.glowColor.includes('255,215,0') ? 'text-yellow-300' : 
+                <p className={`text-xl font-garamond font-light leading-relaxed animate-pulse ${selectedCharacter.glowColor.includes('255,215,0') ? 'text-yellow-300' :
                   selectedCharacter.glowColor.includes('139,69,255') ? 'text-purple-300' :
                   selectedCharacter.glowColor.includes('255,69,0') ? 'text-red-300' :
                   selectedCharacter.glowColor.includes('226,232,240') ? 'text-slate-300' :
