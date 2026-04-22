@@ -101,6 +101,7 @@ interface VerticesPageProps {
 
 const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const handleCardClick = (character: Character) => {
     setSelectedCharacter(character);
@@ -152,8 +153,9 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
           {characters.map((character) => (
             <div
               key={character.id}
-              onClick={() => handleCardClick(character)}
-              className="group relative cursor-pointer transition-all duration-700 ease-out hover:-translate-y-1.5"
+              onMouseEnter={() => setHoveredCard(character.id)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="group relative transition-all duration-700 ease-out hover:-translate-y-1.5"
               style={{
                 willChange: 'transform'
               }}
@@ -200,20 +202,30 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
                       <div className={`w-20 h-20 ${character.particleColor} rounded-full opacity-40`} />
                     </div>
                   )}
-                </div>
 
-                {/* Content Section */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-center bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                  {/* Character Name */}
-                  <h2 className="font-garamond text-white text-3xl mb-1 font-normal">
-                    {character.name}
-                  </h2>
-
-                  {/* Vertex Title */}
-                  <h3 className="font-garamond text-white/70 text-xs tracking-[0.3em] uppercase font-light">
-                    {character.title}
-                  </h3>
+                  {/* View Details Button - Shows on hover */}
+                  {hoveredCard === character.id && (
+                    <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/40 animate-fade-in">
+                      <button
+                        onClick={() => handleCardClick(character)}
+                        className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-garamond text-sm tracking-[0.2em] uppercase hover:bg-white/20 transition-all duration-300"
+                        style={{ borderRadius: '8px' }}
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  )}
                 </div>
+              </div>
+
+              {/* Name below the card */}
+              <div className="mt-4 text-center">
+                <h2 className="font-garamond text-white text-2xl font-normal mb-1">
+                  {character.name}
+                </h2>
+                <h3 className="font-garamond text-white/70 text-xs tracking-[0.3em] uppercase font-light">
+                  {character.title}
+                </h3>
               </div>
             </div>
           ))}
@@ -227,7 +239,7 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
           onClick={handleCloseExpanded}
         >
           <div
-            className="relative max-w-3xl w-full my-8 text-white animate-fade-in-slow"
+            className="relative max-w-2xl w-full my-8 text-white animate-fade-in-slow"
             onClick={(e) => e.stopPropagation()}
             style={{
               background: 'rgba(255,255,255,0.02)',
@@ -244,28 +256,20 @@ const VerticesPage: React.FC<VerticesPageProps> = ({ onClose }) => {
               ×
             </button>
 
-            {/* Character Image */}
+            {/* Full Character Image - no cropping */}
             <div className="relative overflow-hidden" style={{ borderRadius: '16px' }}>
-              <div className="aspect-[3/4]">
-                {/* Gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
-                <div className="absolute inset-0 z-10 pointer-events-none" style={{
-                  background: 'radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.4) 100%)'
-                }} />
-
-                {selectedCharacter.image ? (
-                  <img
-                    src={selectedCharacter.image}
-                    alt={selectedCharacter.name}
-                    className="w-full h-full object-cover"
-                    style={{ filter: 'contrast(1.05) saturate(0.95)' }}
-                  />
-                ) : (
-                  <div className="w-full h-full bg-black/80 flex items-center justify-center">
-                    <div className={`w-32 h-32 ${selectedCharacter.particleColor} rounded-full opacity-40`} />
-                  </div>
-                )}
-              </div>
+              {selectedCharacter.image ? (
+                <img
+                  src={selectedCharacter.image}
+                  alt={selectedCharacter.name}
+                  className="w-full h-auto"
+                  style={{ filter: 'contrast(1.05) saturate(0.95)' }}
+                />
+              ) : (
+                <div className="w-full aspect-[3/4] bg-black/80 flex items-center justify-center">
+                  <div className={`w-32 h-32 ${selectedCharacter.particleColor} rounded-full opacity-40`} />
+                </div>
+              )}
             </div>
 
           </div>
